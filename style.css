@@ -1,0 +1,147 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+  
+  header {
+    background-color: #000000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  h1, h2 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+  }
+  
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  main {
+    padding: 50px;
+  }
+  
+  section {
+    margin-bottom: 30px;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+    
+.skill-bar {
+        width: 100%; /* Adjust width as needed */
+        margin-bottom: 10px;
+        display: inline-block;
+ }
+      
+  
+  .progress-bar {
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
+  }
+  
+  .progress-bar[style*="background-color: #3F72AF;"] {
+    background-color: #af803f;
+  }
+  
+  .progress-bar[style*="background-color: #FFA500;"] {
+    background-color: #FFA500;
+  }
+  
+  .progress-bar[style*="background-color: #FFCC00;"] {
+    background-color: #FFCC00;
+  }
+  
+  .projects {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .projects h4 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  .projects p {
+    margin-bottom: 15px;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000000;
+    color: #fff;
+  }
+  
+  .project-button {
+    background-color: #F0F2F5; /* Light gray background */
+    color: #333; /* Dark gray text */
+    padding: 10px 20px; /* Padding for spacing */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Bold text for emphasis */
+    text-decoration: none; /* Remove underline from text */
+    display: inline-block; /* Allow buttons to sit side-by-side */
+    margin: 5px; /* Add some margin for spacing */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .project-button:hover {
+    background-color: #3F72AF; /* Blue background on hover */
+    color: #fff; /* White text on hover */
+  }
+  .back-to-top-button {
+    position: fixed; /* Keep the button fixed at the bottom */
+    bottom: 20px; /* Adjust the distance from the bottom */
+    right: 20px; /* Adjust the distance from the right */
+    padding: 10px 20px; /* Padding for spacing inside the button */
+    background-color: #3F72AF; /* Blue background color */
+    color: #fff; /* White text color */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline from text */
+    font-weight: bold; /* Bold text for emphasis */
+    opacity: 0; /* Initially hide the button */
+    transition: opacity 0.5s ease; /* Smooth fade-in on scroll */
+  }
+  
+  .back-to-top-button:hover {
+    opacity: 1; /* Button becomes fully opaque on hover */
+  }
+  
+  
+  
