@@ -1,183 +1,113 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
-    transition: background-color 0.3s ease;
-  }
-  
-  body.night-mode {
-    background-color: #121212;
-    color: #e0e0e0;
-  }
-  
-  header {
-    background-color: #000000;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    position: relative;
-  }
-  
-  h1, h2 {
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1 {
-    font-size: 2.5em;
-  }
-  
-  h2 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-  }
-  
-  p {
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  main {
-    padding: 50px;
-  }
-  
-  section {
-    margin-bottom: 30px;
-  }
-  
-  h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .skills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .skill-bar {
-    width: 100%;
-    margin-bottom: 10px;
-    display: inline-block;
-  }
-  
-  .progress-bar {
-    height: 10px;
-    background-color: #ddd;
-    border-radius: 5px;
-    transition: width 1s ease-in-out, background-color 0.3s ease;
-  }
-  
-  .progress-bar[style*="background-color: #3F72AF;"] {
-    background-color: #3F72AF;
-  }
-  
-  .progress-bar[style*="background-color: #FFA500;"] {
-    background-color: #FFA500;
-  }
-  
-  .progress-bar[style*="background-color: #FFCC00;"] {
-    background-color: #FFCC00;
-  }
-  
-  .projects {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .projects h4 {
-    font-size: 1.2em;
-    margin-bottom: 5px;
-  }
-  
-  .projects p {
-    margin-bottom: 15px;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #000000;
-    color: #fff;
-    position: relative;
-  }
-  
-  .project-button {
-    background-color: #F0F2F5;
-    color: #333;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    text-decoration: none;
-    display: inline-block;
-    margin: 5px;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .project-button:hover {
-    background-color: #3F72AF;
-    color: #fff;
-  }
-  
-  .back-to-top-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #3F72AF;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  .back-to-top-button:hover {
-    opacity: 1;
-  }
-  
-  header .night-mode-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5em;
-    cursor: pointer;
-  }
-  
-  header .night-mode-toggle:hover {
-    color: #FFA500;
-  }
-  
-  @keyframes slideInLeft {
-    0% {
-      transform: translateX(-100%);
-      opacity: 0;
+// Particle System with Independent Revolving Particles (Spawned Far Away)
+function initializeCanvas() {
+  const canvas = document.getElementById("hero-canvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const body = document.body;
+
+  // Central force or gravitational center (canvas center)
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+
+  class Particle {
+    constructor(x, y) {
+      // Initialize position and orbit parameters for each particle
+      this.x = x;
+      this.y = y;
+      this.radius = Math.random() * 2 + 2; // Random size
+      this.angle = Math.random() * Math.PI * 2; // Random initial angle
+      this.speed = 0.01 + Math.random() * 0.03; // Random orbital speed (angular velocity)
+      this.distance = Math.random() * 1000 + 50; // Increased distance range (spawn particles farther)
+      this.color = this.getParticleColor(); // Dynamically set color based on mode
     }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
+
+    getParticleColor() {
+      return body.classList.contains("light-mode") ? "#000" : "#fff"; // Light mode/dark mode color
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    update() {
+      // Update the position based on circular motion (angular velocity)
+      this.angle += this.speed; // Increase angle for rotation (orbital movement)
+
+      // Calculate the new position using polar coordinates (radius and angle)
+      this.x = centerX + this.distance * Math.cos(this.angle);
+      this.y = centerY + this.distance * Math.sin(this.angle);
+
+      // Optional: Add slight oscillation to make it feel more natural
+      this.x += Math.sin(this.angle * 3) * 2; // Oscillation effect in X
+      this.y += Math.cos(this.angle * 3) * 2; // Oscillation effect in Y
     }
   }
-  
-  section {
-    animation: slideInLeft 1s ease-in-out;
+
+  let particles = [];
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < 100; i++) {
+      // Randomly place each particle at different angles and larger distances from the center
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 500 + 100; // Increased range for distance (larger radius)
+      const x = centerX + Math.cos(angle) * distance;
+      const y = centerY + Math.sin(angle) * distance;
+      particles.push(new Particle(x, y));
+    }
   }
-  
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+    particles.forEach((particle) => {
+      particle.update(); // Update position for each particle
+      particle.draw(); // Draw each particle
+    });
+    requestAnimationFrame(animate); // Request next frame for animation
+  }
+
+  // Initialize particles and start animation
+  createParticles();
+  animate();
+
+  // Handle window resize (resize canvas and particles)
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    createParticles();
+  });
+
+  // Theme toggle button functionality (update particle colors)
+  const themeToggleButton = document.getElementById("theme-toggle");
+  if (themeToggleButton) {
+    themeToggleButton.addEventListener("click", () => {
+      body.classList.toggle("light-mode");
+      body.classList.toggle("dark-mode");
+      particles.forEach(particle => {
+        particle.color = particle.getParticleColor(); // Update particle colors based on theme change
+      });
+    });
+  }
+}
+
+// Mobile detection (hide canvas on mobile)
+function isMobileDevice() {
+  return (
+    typeof window.orientation !== "undefined" ||
+    navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i)
+  );
+}
+
+// Initialize canvas only on desktop
+if (!isMobileDevice()) {
+  initializeCanvas();
+} else {
+  const canvas = document.getElementById("hero-canvas");
+  if (canvas) canvas.style.display = "none"; // Hide canvas on mobile
+}
