@@ -1,4 +1,3 @@
-// Particle System with Independent Revolving Particles (Spawned Far Away)
 function initializeCanvas() {
   const canvas = document.getElementById("hero-canvas");
   if (!canvas) return;
@@ -9,19 +8,27 @@ function initializeCanvas() {
 
   const body = document.body;
 
+  // Apply the saved theme from localStorage
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    body.classList.add(savedTheme);
+  } else {
+    // Default theme is light-mode
+    body.classList.add("light-mode");
+  }
+
   // Central force or gravitational center (canvas center)
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
 
   class Particle {
     constructor(x, y) {
-      // Initialize position and orbit parameters for each particle
       this.x = x;
       this.y = y;
       this.radius = Math.random() * 2 + 2; // Random size
       this.angle = Math.random() * Math.PI * 2; // Random initial angle
       this.speed = 0.01 + Math.random() * 0.03; // Random orbital speed (angular velocity)
-      this.distance = Math.random() * 1000 + 50; // Increased distance range (spawn particles farther)
+      this.distance = Math.random() * 1000 + 10; // Increased distance range (spawn particles farther)
       this.color = this.getParticleColor(); // Dynamically set color based on mode
     }
 
@@ -37,16 +44,11 @@ function initializeCanvas() {
     }
 
     update() {
-      // Update the position based on circular motion (angular velocity)
-      this.angle += this.speed; // Increase angle for rotation (orbital movement)
-
-      // Calculate the new position using polar coordinates (radius and angle)
+      this.angle += this.speed;
       this.x = centerX + this.distance * Math.cos(this.angle);
       this.y = centerY + this.distance * Math.sin(this.angle);
-
-      // Optional: Add slight oscillation to make it feel more natural
-      this.x += Math.sin(this.angle * 3) * 2; // Oscillation effect in X
-      this.y += Math.cos(this.angle * 3) * 2; // Oscillation effect in Y
+      this.x += Math.sin(this.angle * 3) * 2;
+      this.y += Math.cos(this.angle * 3) * 2;
     }
   }
 
@@ -54,9 +56,8 @@ function initializeCanvas() {
   function createParticles() {
     particles = [];
     for (let i = 0; i < 100; i++) {
-      // Randomly place each particle at different angles and larger distances from the center
       const angle = Math.random() * Math.PI * 2;
-      const distance = Math.random() * 500 + 100; // Increased range for distance (larger radius)
+      const distance = Math.random() * 300 + 200;
       const x = centerX + Math.cos(angle) * distance;
       const y = centerY + Math.sin(angle) * distance;
       particles.push(new Particle(x, y));
@@ -64,33 +65,40 @@ function initializeCanvas() {
   }
 
   function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach((particle) => {
-      particle.update(); // Update position for each particle
-      particle.draw(); // Draw each particle
+      particle.update();
+      particle.draw();
     });
-    requestAnimationFrame(animate); // Request next frame for animation
+    requestAnimationFrame(animate);
   }
 
-  // Initialize particles and start animation
   createParticles();
   animate();
 
-  // Handle window resize (resize canvas and particles)
   window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     createParticles();
   });
 
-  // Theme toggle button functionality (update particle colors)
+  // Theme toggle button functionality (save theme to localStorage)
   const themeToggleButton = document.getElementById("theme-toggle");
   if (themeToggleButton) {
     themeToggleButton.addEventListener("click", () => {
-      body.classList.toggle("light-mode");
-      body.classList.toggle("dark-mode");
+      if (body.classList.contains("light-mode")) {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark-mode"); // Save dark mode to localStorage
+      } else {
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+        localStorage.setItem("theme", "light-mode"); // Save light mode to localStorage
+      }
+
+      // Update particle colors based on the new theme
       particles.forEach(particle => {
-        particle.color = particle.getParticleColor(); // Update particle colors based on theme change
+        particle.color = particle.getParticleColor(); // Update particle color on theme change
       });
     });
   }
@@ -104,7 +112,6 @@ function isMobileDevice() {
   );
 }
 
-// Initialize canvas only on desktop
 if (!isMobileDevice()) {
   initializeCanvas();
 } else {
