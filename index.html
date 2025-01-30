@@ -4,125 +4,160 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ritesh Verma | Game Developer & Animator</title>
+  <link rel="icon" href="https://i.ibb.co/PFKdcN5/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="script.js" defer></script>
 </head>
 <body>
-  <a href="#" class="back-to-top-button">Back to Top</a>
-  <header>
-    <h1>Ritesh Verma</h1>
-    <h2>Game Developer, Animator & Video Editor</h2>
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="#hero" class="logo">Ritesh | Resume.</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work-history">Work History</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li>
+        <button id="theme-toggle" aria-label="Toggle Theme">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </li>
+    </ul>
   </header>
-  <main>
-    <section class="about">
-      <h3>About Me</h3>
-      <p>I'm Ritesh Verma, a passionate game developer and animator with a knack for creating engaging and immersive experiences. I'm fueled by the challenge of bringing ideas to life through code and animation, and I thrive in collaborative environments where I can learn from others and contribute my expertise. My background in computer science has equipped me with a strong foundation in programming, while my experience as a 3D animator allows me to craft visually appealing characters and animations. I'm a quick learner, always eager to expand my skillset and stay ahead of the curve in the ever-evolving game development landscape.</p>
-    </section>
-    <section class="skills">
-      <h3>Skills</h3>
-      <div class="skill-bar" data-skill="100">
-        <p>Coding</p>
-        <div class="progress-bar" style="background-color: #3F72AF;"></div>
+
+  <!-- Hero Section -->
+<!-- Hero Section -->
+<section id="hero" class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Ritesh Verma</h1>
+    <p class="hero-subtitle">Game Developer, Animator & Video Editor</p>
+    <a href="#about" class="cta-btn">Explore My Journey</a>
+  </div>
+  <canvas id="hero-canvas"></canvas> <!-- Add this line -->
+</section>
+
+  <!-- About Section -->
+  <section id="about" class="portfolio-section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-desc">I'm Ritesh Verma, a passionate game developer and animator with a knack for creating engaging and immersive experiences. I'm fueled by the challenge of bringing ideas to life through code and animation, and I thrive in collaborative environments where I can learn from others and contribute my expertise.</p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="portfolio-section">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-desc">A showcase of my technical and creative expertise.</p>
+      <div class="skills-grid">
+        <div class="skill-card" data-skill="100">
+          <h3>Coding</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="100">
+          <h3>Object-Oriented Programming</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="80">
+          <h3>Testing & Debugging</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="80">
+          <h3>Color Grading</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="60">
+          <h3>Adobe Premiere Pro</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="60">
+          <h3>Adobe After Effects</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="100">
+          <h3>Filmora 13</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="100">
+          <h3>CapCut</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="100">
+          <h3>Unity</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="100">
+          <h3>Advanced Editing Techniques</h3>
+          <div class="progress-bar"></div>
+        </div>
+        <div class="skill-card" data-skill="80">
+          <h3>Character Animation</h3>
+          <div class="progress-bar"></div>
+        </div>
       </div>
-      <div class="skill-bar" data-skill="100">
-        <p>Object-Oriented Programming</p>
-        <div class="progress-bar" style="background-color: #3F72AF;"></div>
+    </div>
+  </section>
+
+  <!-- Work History Section -->
+  <section id="work-history" class="portfolio-section">
+    <div class="container">
+      <h2 class="section-title">Work History</h2>
+      <p class="section-desc">My professional journey and contributions.</p>
+      <div class="work-card">
+        <h3>Team Emogi (Pune)</h3>
+        <h4>Programmer (April 2019 - April 2022)</h4>
+        <ul>
+          <li>Designed and developed robust software solutions to meet client requirements for functionality, scalability, and performance.</li>
+          <li>Collaborated with team members to define application requirement specifications.</li>
+          <li>Identified opportunities for process improvement, leading to a more efficient development cycle.</li>
+        </ul>
+        <h4>3D Animator (April 2022 - Present)</h4>
+        <ul>
+          <li>Developed gameplay mechanics, features, and systems using C# in Unity for various game projects.</li>
+          <li>Collaborated with designers, artists, and animators to integrate assets and ensure seamless gameplay experiences.</li>
+          <li>Optimized game performance by profiling and debugging code, reducing memory usage, and enhancing frame rates across multiple platforms.</li>
+        </ul>
       </div>
-      <div class="skill-bar" data-skill="80">
-        <p>Testing & Debugging</p>
-        <div class="progress-bar" style="background-color: #FFA500;"></div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="portfolio-section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-desc">A collection of my creative and technical work.</p>
+      <div class="project-gallery">
+        <div class="project-card">
+          <h3>Fear Bound (Team Emogi)</h3>
+          <p>Collaborated with a team of 4 to develop Fear Bound, a game that immerses players in a thrilling horror experience.</p>
+          <button class="project-button disabled" disabled>Coming Soon!</button>
+        </div>
+        <div class="project-card">
+          <h3>Fragments of Reality (Team Emogi)</h3>
+          <p>Led the programming efforts for Fragments of Reality, a mind-bending puzzle game.</p>
+          <a href="https://emogi.itch.io/yume" class="project-button">Play Now</a>
+        </div>
+        <div class="project-card">
+          <h3>Editing Project (Personal Project - Premiere Pro)</h3>
+          <p>Edited using Adobe Premiere Pro, Adobe After Effects, Filmora 13.</p>
+          <a href="https://drive.google.com/drive/folders/13UcXgsQdZFdAkdPzCYM5dCEm2lGJg95e?usp=sharing" class="project-button">View Edit</a>
+        </div>
+        <div class="project-card">
+          <h3>Photoshop Project (Personal Project - Photoshop)</h3>
+          <p>Designed Some Thumbnails. Utilized Photoshop for photo manipulation, text effects, and compositing.</p>
+          <a href="https://drive.google.com/drive/folders/1Sja3-DFMPIaW8Mrek6aU7skfZxje81Ll?usp=sharing" class="project-button">View Poster</a>
+        </div>
       </div>
-      <div class="skill-bar" data-skill="80">
-        <p>Color Grading</p>
-        <div class="progress-bar" style="background-color: #FFA500;"></div>
-      </div>
-      <div class="skill-bar" data-skill="60">
-        <p>Adobe Premiere Pro</p>
-        <div class="progress-bar" style="background-color: #FFCC00;"></div>
-      </div>
-      <div class="skill-bar" data-skill="60">
-        <p>Adobe After Effects</p>
-        <div class="progress-bar" style="background-color: #FFCC00;"></div>
-      </div>
-      <div class="skill-bar" data-skill="100">
-        <p>Filmora 13</p>
-        <div class="progress-bar" style="background-color: #3F72AF;"></div>
-      </div>
-      <div class="skill-bar" data-skill="100">
-        <p>CapCut</p>
-        <div class="progress-bar" style="background-color: #3F72AF;"></div>
-      </div>
-      <div class="skill-bar" data-skill="100">
-        <p>Unity</p>
-        <div class="progress-bar" style="background-color: #3F72AF;"></div>
-      </div>
-      <div class="skill-bar" data-skill="100">
-        <p>Advanced Editing Techniques</p>
-        <div class="progress-bar" style="background-color: #3F72AF;"></div>
-      </div>
-      <div class="skill-bar" data-skill="80">
-        <p>Character Animation</p>
-        <div class="progress-bar" style="background-color: #FFA500;"></div>
-      </div>
-    </section>
-    <section class="work-history">
-      <h3>Work History</h3>
-      <h4>Team Emogi (Pune)</h4>
-      <h5>Programmer (April 2019 - April 2022)</h5>
-      <ul>
-        <li>Designed and developed robust software solutions to meet client requirements for functionality, scalability, and performance.</li>
-        <li>Collaborated with team members to define application requirement specifications.</li>
-        <li>Identified opportunities for process improvement, leading to a more efficient development cycle.</li>
-        <li>Designed intuitive graphical user interfaces to improve user experience.</li>
-        <li>Prepared detailed reports on updates to project specifications, progress, identified conflicts, and team activities.</li>
-        <li>Enhanced software functionality by identifying and resolving complex coding issues.</li>
-      </ul>
-      <h5>3D Animator (April 2022 - Present)</h5>
-      <ul>
-        <li>Developed gameplay mechanics, features, and systems using C# in Unity for various game projects.</li>
-        <li>Collaborated with designers, artists, and animators to integrate assets and ensure seamless gameplay experiences.</li>
-        <li>Optimized game performance by profiling and debugging code, reducing memory usage, and enhancing frame rates across multiple platforms.</li>
-        <li>Created and maintained custom tools and editor extensions to streamline the development process and improve productivity.</li>
-        <li>Implemented AI behaviors, pathfinding algorithms, and player controls to create immersive and challenging gameplay experiences.</li>
-        <li>Integrated third-party SDKs and APIs for features such as analytics, in-app purchases, and social media sharing.</li>
-        <li>Wrote clean, maintainable, and well-documented code following industry best practices and coding standards.</li>
-        <li>Participated in code reviews, providing and receiving constructive feedback to ensure code quality and consistency.</li>
-        <li>Collaborated with QA teams to identify and fix bugs, ensuring a high level of game stability and polish.</li>
-        <li>Stayed updated with the latest developments in Unity and game programming techniques to continuously improve skills and contribute to innovative solutions.</li>
-        <li>Participated in creative brainstorming sessions to develop innovative animation concepts and ideas.</li>
-        <li>Conducted thorough testing and debugging of animations to maintain high standards of quality and consistency.</li>
-        <li>Adapted to feedback and made iterative improvements to animations based on team and user input.</li>
-        <li>Maintained up-to-date knowledge of industry trends, tools, and techniques to continuously enhance animation quality.</li>
-        <li>Documented animation workflows and best practices to streamline production processes and improve team efficiency.</li>
-      </ul>
-    </section>
-    <section class="projects">
-      <h3>Projects</h3>
-      <h4>Fear Bound (Team Emogi)</h4>
-      <p>Collaborated with a team of 4 to develop Fear Bound, a game that immerses players in a thrilling horror experience. My contributions included character animation, gameplay mechanics development, and testing to ensure a polished and engaging final product.</p>
-      <button class="project-button disabled" disabled>Coming Soon!</button>
-      <h4>Fragments of Reality (Team Emogi)</h4>
-      <p>Led the programming efforts for Fragments of Reality, a mind-bending puzzle game. I spearheaded the development of core gameplay mechanics, implemented AI behaviors, and optimized game performance for a seamless user experience.</p>
-      <a href="https://emogi.itch.io/yume" class="project-button">Play Now</a>
-      <h4>Editing Project (Personal Project - Premiere Pro)</h4>
-      <p>Edited using Adobe Premiere Pro, Adobe After Effects, Filmora 13. Enhanced visual effects, color grading, and audio mixing to create a polished and immersive final product.</p>
-      <a href="https://drive.google.com/drive/folders/13UcXgsQdZFdAkdPzCYM5dCEm2lGJg95e?usp=sharing" class="project-button">View Edit</a>
-      <h4>Photoshop Project (Personal Project - Photoshop)</h4>
-      <p>Designed Some Thumbnails. Utilized Photoshop for photo manipulation, text effects, and compositing to create a visually arresting design.</p>
-      <a href="https://drive.google.com/drive/folders/1Sja3-DFMPIaW8Mrek6aU7skfZxje81Ll?usp=sharing" class="project-button">View Poster</a>
-    </section>
-    <section class="achievements">
-      <h3>Additional Achievements</h3>
-      <ul>
-        <li>Reduced project costs by 20% and ensured timely completion.</li>
-        <li>Developed internal management systems to streamline processes and improve productivity.</li>
-        <li>Contributed to technical and functional enhancements, ensuring efficient project progress.</li>
-      </ul>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>Ritesh Verma &copy; 2024</p>
+    <p>&copy; 2024 Ritesh Verma. || Team Emogi. All rights reserved.</p>
+    <p>Contact me: Discord: <a href="https://www.discordapp.com/users/954607681694470165">imimi_geimeo</a> | Instagram: <a href="https://www.instagram.com/cyberforge07/">cyberforge07</a></p>
   </footer>
 </body>
 </html>
